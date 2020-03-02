@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+    <link rel="stylesheet" type="text/css" href="css/login_register.css">
+    <!--    <link rel="stylesheet" type="text/css" href="css/reset.css">
+      <link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css">
+       <script type="text/JavaScript" src="js/http_code.jquery.com_jquery-2.0.0.js"></script>-->
+    <script type="text/javascript" src="js/jquery3-3-1.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.js"></script>
+    <script type="text/javascript" src="js/additional-methods.js"></script>
+</head>
+<body>
+<form id="register" role="form">
+    <div class="container">
+        <div class="register">
+            <div class="logo">
+                <a href="#" target="_blank">
+                    My Blog
+                </a>
+            </div>
+            <div class="describe">—— My Blog Register ——</div>
+            <div class="register-form">
+                <div class="form-item">
+                    <input class="register-input" type="text" placeholder="请输入用户名" id="username" name="username">
+                </div>
+                <div class="form-item">
+                    <input class="register-input" type="text" placeholder="请输入手机号" id="phone" name="phone">
+                </div>
+                <div class="form-item">
+                    <input class="register-input" type="text" placeholder="请输入邮箱" id="email" name="email">
+                </div>
+                <div class="form-item">
+                    <input class="register-input" type="password" placeholder="请输入密码" id="password" name="password">
+                </div>
+                <div class="form-item">
+                    <input class="register-input" type="password" placeholder="请再次输入密码" id="password_confirm" name="password_confirm">
+                </div>
+                <div class="form-item">
+                    <button class="register-btn" type="submit">注册</button>
+                </div>
+
+                <hr>
+                <div class="turn-login">
+                    已有账号？
+                    <a href="login.html">  立即登录</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        // alert("1");
+        $('#register').validate({
+            'errorElement': 'span',
+            rules : {
+                username: {
+                    remote: {
+                        url: "./php/register.php",
+                        type: 'post',
+                        dataType: 'json',
+                        data: {
+                            username: function () {
+                                return $('#username').val();
+
+                            },
+                            do: 'user_exist',
+                        },
+                    },
+                    required: true,
+                },
+                password:{
+                    required:true
+                },
+                password_confirm:{
+                    required:true,
+                    equalTo:"#password"
+
+                },
+                phone:{
+                    required:true,
+                },
+                email:{
+                    required:true,
+                }
+            },
+            messages: {
+                'username': {
+                    remote: '用户名已存在',
+                },
+            },
+            errorPlacement: function (error, element){
+                error.insertAfter(element);
+            },
+            submitHandler: function (form){
+                var formData = new FormData(form);
+                formData.append('do', 'register');
+                $.ajax({
+                    type: "post",
+                    url: "./php/register.php",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (){
+                        window.location.href='login.html';
+                    },
+                    error : function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert('连接错误：' + textStatus + errorThrown);
+                    },
+                });
+            },
+        });
+    });
+</script>
+</body>
+</html>

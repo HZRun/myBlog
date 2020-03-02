@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edit-info</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/edit-info.css">
+    <link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <script type="text/JavaScript" src="js/http_code.jquery.com_jquery-2.0.0.js"></script>
+
+
+
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="pull-left">
+                <ul>
+                    <li class="logo"><a href="#">MyBlog</a></li>
+                </ul>
+            </div>
+            <div class="pull-right">
+                <ul>
+                    <li>
+                        <div class="search-bar">
+                            <input type="text" style="float: left" class="input-search" placeholder="搜博主/文章">
+                            <a href="#" style="float: right" class="btn-search"><i id="search_button" class="fa fa-search" aria-hidden="true"></i></a>
+                        </div>
+                    </li>
+                    <li class="login-center">
+                        <a href="#" id="navAvatar">
+                            <!--<img src="img/login.png">-->
+                        </a>
+                        <div class="user-control">
+                            <!--<div>-->
+                                <!--<a href="#" target="_blank">我的博客</a>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<a href="#" target="_blank">关注/粉丝</a>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<a href="#" target="_blank">修改资料</a>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                                <!--<a href="#" target="_blank">退出</a>-->
+                            <!--</div>-->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="banner">
+        <div class="title-box">
+            <h6 class="title-blog">Elenore的博客</h6>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="filter-box">
+            <h3>修改个人信息</h3>
+        </div>
+        <div class="user-avatar">
+            <img id="photo" src="img/user-avatar.jpg">
+            <input type="file" name="imgOne" id="imgOne" style="display: none"/>
+            <button class="btn-upload">上传图片</button>
+        </div>
+        <div class="user-info">
+            <ul>
+                <li><span class="user-name">用户名：</span></li>
+                <li><span class="phone-num">手机号：</span><input type="text"></li>
+                <li><span class="e-mail">E-mail：</span><input type="text"></li>
+                <li><span class="github">GitHub：</span><input type="text"></li>
+                <li><span class="school">学校：</span><input type="text"></li>
+            </ul>
+        </div>
+        <div class="btn-div">
+            <button class="confirm-change">确认</button>
+            <button class="cancel-change">取消</button>
+        </div>
+    </div>
+
+    <script src="js/set_nav_banner.js"></script>
+    <script>
+        var imgUrl;
+
+        $("#imgOne").change(function(){
+
+            var file = this.files[0];
+            if (window.FileReader) {
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                //监听文件读取结束后事件
+                reader.onloadend = function (e) {
+                    imgUrl = e.target.result;
+                    $("#photo").attr("src", imgUrl);   //e.target.result就是最后的路径地址
+                };
+            }
+        });
+
+        // alert(imgUrl);
+
+        $('.btn-upload').click(function () {
+            $('#imgOne').click();
+        });
+
+    </script>
+    <script>
+
+        jQuery(document).ready(function () {
+
+            (function ($) {
+                $.getUrlParam = function (name) {
+
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+
+                    var r = window.location.search.substr(1).match(reg);
+
+                    if (r != null) return unescape(r[2]); return null;
+                }
+
+            })(jQuery);
+
+            var username = $.getUrlParam('username');
+
+            // title 和 banner
+            // title
+            $("title").html(username + "的博客  -myblog");
+            // banner
+            var blogTitle = document.getElementsByClassName('title-box')[0];
+            blogTitle.innerHTML = "<h6 class=\"title-blog\">" + username + "的博客</h6>";
+
+            $.ajax({
+
+                type: "POST",
+                url: "php/get_main.php",
+                data: {
+                    do: "get_info",
+                    username: username
+                },
+                dataType: "json",
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert('连接错误：' + textStatus + errorThrown);
+                },   //如果请求出错，弹出错误提示
+                success: function (data) {
+                    // 头像
+                    if (data['avatar'][0].length == 0){
+                        $("#photo").attr("src", "img/default.jpg");
+                    }
+                    else {
+                        $("#photo").attr("src", data['avatar'][0]);
+                    }
+
+                    // 取出信息放在input中
+                    // $(".user-name").next().val(username);
+                    $(".user-name")[0].innerHTML = "用户名：" + username;
+                    $(".phone-num").next().val(data['mobile'][0]);
+                    $(".e-mail").next().val(data['email'][0]);
+                    $(".github").next().val(data['github'][0]);
+                    $(".school").next().val(data['school'][0]);
+                }
+            });
+
+            // 取消修改，回到个人信息界面
+            $(document).on('click', '.cancel-change', function () {
+                window.location.href = 'user_info.html?username=' + username;
+            });
+
+            // var mobile = $(".phone-num").next().val();
+            // console.log("mobile:" + mobile);
+            // 确认修改
+            $(document).on('click', '.confirm-change', function () {
+                var mobile = $(".phone-num").next().val();
+                var email = $(".e-mail").next().val();
+                var github = $(".github").next().val();
+                var school = $(".school").next().val();
+                var avatar = $("#photo")[0].src;
+                // console.log(avatar);
+
+                $.ajax({
+                    type: "POST",
+                    url: "php/edit_info.php",
+                    data: {
+                        do: "edit_info",
+                        username: username,
+                        mobile: mobile,
+                        email: email,
+                        github: github,
+                        school: school,
+                        avatar: avatar
+                    },
+                    dataType: "json",
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert('连接错误：' + textStatus + errorThrown);
+                    },
+                    success: function () {
+                        alert("修改成功！");
+                        window.location.href = 'user_info.html?username=' + username;
+                    }
+                })
+            })
+        });
+
+
+
+
+    </script>
+</body>
+</html>

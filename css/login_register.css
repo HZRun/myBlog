@@ -1,0 +1,83 @@
+body{
+    background: url('../img/Tokyo3.jpg') no-repeat fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+}
+
+
+.login, .register{
+    width: 300px;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 4px;
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    margin: -150px 0 0 -150px;
+    z-index: 99;
+    text-align: center;
+}
+
+.container .login .logo a, .container .register .logo a{
+    text-decoration: none;
+    color: #3b3b3b;
+    font-size: 25px;
+}
+
+.container .login .describe, .container .register .describe{
+    color: #3b3b3b;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.container .login .form-item, .container .register .form-item{
+    margin-bottom: 15px;
+}
+
+.container .login .form-item .login-input, .container .register .form-item .register-input{
+    display: block;
+    width: 285px;
+    height: 38px;
+    padding-left: 10px;
+    border-width: 1px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.container .login .form-item .login-btn, .container .register .form-item .register-btn, #loginBtn{
+    border-radius: 100px;
+    display: inline-block;
+    height: 38px;
+    width: 285px;
+    line-height: 38px;
+    padding: 0 18px;
+    background-color: #1E9FFF;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.container .login .form-item .login-btn:hover, .container .register .form-item .register-btn:hover{
+    opacity: 1;
+}
+
+.container .login .turn-register, .container .register .turn-login{
+    color: #FFFFFF;
+    margin-top: 15px;
+}
+
+.container .login .turn-register a, .container .register .turn-login a{
+    text-decoration: none;
+    color: #1E9FFF;
+    opacity: 0.9;
+}
+
+hr{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

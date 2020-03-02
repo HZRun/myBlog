@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" type="text/css" href="css/login_register.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <script type="text/javascript" src="js/jquery3-3-1.js"></script>
+    <script src="js/jquery-form.js"></script>
+    <link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--<script type="text/JavaScript" src="js/http_code.jquery.com_jquery-2.0.0.js"></script>&ndash;&gt;-->
+    <script type="text/javascript" src="js/jquery.validate.js"></script>
+    <script type="text/javascript" src="js/additional-methods.js"></script>
+
+
+
+</head>
+<body>
+<form class="login-form" action="{:url()}" method="post" id="form_login">
+    <div class="container">
+        <div class="login">
+            <div class="logo">
+                <a href="#" target="_blank">
+                    My Blog
+                </a>
+            </div>
+            <div class="describe">—— My Blog Log in ——</div>
+            <div class="login-form">
+                <div class="form-item">
+                    <input class="login-input" type="text" placeholder="请输入用户名" id="username" autocomplete="off" name="user" >
+                </div>
+                <div class="form-item">
+                    <input class="login-input" type="password" placeholder="请输入密码" id="psd" autocomplete="off" name="psw" >
+                </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn red btn-block uppercase" id="loginBtn">登录</button>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="turn-register">
+                    还没有账号？
+                    <a href="register.html">  立即注册</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<!--<form class="login-form" action="./php/login.php" method="post" id="form_login">
+&lt;!&ndash;
+    <div class="form-item">
+        <input class="login-input" type="text" placeholder="请输入用户名" id="username" autocomplete="off" name="username"/>
+    </div>
+&ndash;&gt;
+
+
+    <div class="form-group">
+        &lt;!&ndash;ie8, ie9 does not support html5 placeholder, so we just show field title for that&ndash;&gt;
+        <label class="control-label visible-ie8 visible-ie9">Username</label>
+        <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="请输入用户名" name="user_login" id="user_login" /> </div>
+    <div class="form-group">
+        <label class="control-label visible-ie8 visible-ie9">Password</label>
+        <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="请输入密码" name="psw" id="psw" />
+    </div>
+    <div class="form-actions">
+        <input type="hidden" name="do" value="validate" />
+        <button type="submit" class="btn red btn-block uppercase">登陆</button>
+    </div>
+    <div class="form-item">
+        <input type="text" class="login-input">
+        <input class="login-input" type="text" placeholder="请输入用户名" id="username" autocomplete="off" />
+        <button>测试</button>
+    </div>
+    <p>hello</p>
+
+</form>-->
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        $('#form_login').validate({
+
+            'errorElement': 'span',
+            rules : {
+
+                               user: {
+                                    remote: {
+                                        cache: false,
+                                        url: "php/login.php",
+                                        type: 'post',
+                                        dataType: 'json',
+                                        data: {
+                                            user: function () {
+                                                return $('#username').val();
+
+                                            },
+                                            do: 'user_exist',
+                                        },
+                                    },
+                                   required: true,
+
+                                },
+                psw:{
+                    required:true
+                }
+            },
+            messages: {
+                'user': {
+                    remote: '该用户名不存在',
+                },
+            },
+            errorPlacement: function (error, element){
+                error.insertAfter(element);
+            },
+            submitHandler: function (form){
+                var formData = new FormData(form);
+                formData.append('do', 'login');
+                $.ajax({
+                    type: "post",
+                    url: "php/login.php",
+                    data: formData,
+                    dataType:'json',
+                    contentType: false,
+                    processData: false,
+                    success: function (data){
+                        if(data.code==1){
+                            alert("登录成功");
+                            window.location.href = 'home.html?username=' + $('#username').val();
+                        }
+                        if(data.code==0){
+                            alert("密码错误");
+                        }
+                        //alert(data.msg);
+                    },
+                    error : function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert('连接错误：' + textStatus + errorThrown);
+                    },
+                });
+            },
+        });
+    });
+</script>
+</body>
+</html>

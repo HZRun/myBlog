@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <script type="text/JavaScript" src="js/http_code.jquery.com_jquery-2.0.0.js"></script>
+    <script type="text/javascript" src="js/home.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="pull-left">
+                <ul>
+                    <li class="logo"><a href="#">MyBlog</a></li>
+                </ul>
+            </div>
+            <div class="pull-right">
+                <ul>
+                    <li>
+                        <div class="search-bar">
+                            <input type="text" style="float: left" class="input-search" placeholder="搜博主/文章">
+                            <a href="#" style="float: right" class="btn-search"><i id="search_button" class="fa fa-search" aria-hidden="true"></i></a>
+                        </div>
+                    </li>
+                    <!--<li><a class="write_blog" href="#"><i class="fa fa-pencil" aria-hidden="true"></i>  写博客</a></li>-->
+                    <li class="login-center">
+                        <a href="#" id="navAvatar">
+                            <!--<img src="img/login.png">-->
+                        </a>
+                        <div class="user-control">
+                            <!--<div>-->
+                            <!--<a href="#" target="_blank">我的博客</a>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                            <!--<a href="#" target="_blank" class="follow-fan">关注/粉丝</a>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                            <!--<a href="#" target="_blank" class="edit-info">修改资料</a>-->
+                            <!--</div>-->
+
+                            <!--<div>-->
+                            <!--<a href="#" target="_blank">退出</a>-->
+                            <!--</div>-->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+
+        <div class="sections">
+            <div class="section" id="section0"  >
+                <!--<h1 class="welcome">Welcome Page</h1>-->
+            </div>
+            <div class="section" id="section1">
+                <!--<h1>this is the page</h1>-->
+            </div>
+            <div class="section" id="section2">
+                <!--<h1>this is the page</h1>-->
+            </div>
+            <div class="section" id="section3">
+                <!--<h1>this is the page</h1>-->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/set_nav_banner.js"></script>
+    <script>
+        $(document).on('click', '#section0', function () {
+            window.location.href = 'article.html?username=mazong&article_id=50';
+        });
+
+        $(document).on('click', '#section1', function () {
+            window.location.href = 'article.html?username=mazong&article_id=51';
+        });
+
+        $(document).on('click', '#section2', function () {
+            window.location.href = 'article.html?username=mazong&article_id=52';
+        });
+    </script>
+</body>
+</html>

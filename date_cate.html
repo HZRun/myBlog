@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>date_cate</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <script type="text/JavaScript" src="js/jquery3-3-1.js"></script>
+</head>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="pull-left">
+            <ul>
+                <li class="logo"><a href="#">MyBlog</a></li>
+            </ul>
+        </div>
+        <div class="pull-right">
+            <ul>
+                <li>
+                    <div class="search-bar">
+                        <input type="text" style="float: left" class="input-search" placeholder="搜博主/文章">
+                        <a href="#" style="float: right" class="btn-search"><i id="search_button" class="fa fa-search" aria-hidden="true"></i></a>
+                    </div>
+                </li>
+                <li class="login-center">
+                    <a href="#" id="navAvatar">
+                        <!--<img src="img/login.png">-->
+                    </a>
+                    <div class="user-control">
+                        <!--<div>-->
+                        <!--<a href="#" target="_blank">我的博客</a>-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<a href="#" target="_blank">关注/粉丝</a>-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<a href="#" target="_blank">修改资料</a>-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<a href="#" target="_blank">退出</a>-->
+                        <!--</div>-->
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="banner">
+    <div class="title-box">
+        <h6 class="title-blog">Elenore的博客</h6>
+    </div>
+</div>
+
+<div class="container">
+    <aside>
+        <div id="asideProfile" class="aside-box">
+            <h3 class="aside-title">
+                个人资料
+            </h3>
+            <div class="profile-intro">
+                <div class="avatar-box">
+                    <a href="#" id="userAvatar">
+                        <!--头像-->
+                        <!--<img src="img/login.png">-->
+                    </a>
+                </div>
+                <div class="user-info">
+                    <p class="name">
+                        <!--id-->
+                        <a href="#" target="_blank" class="text-truncate" id="uid">
+                            <!--Elenore-->
+                        </a>
+                    </p>
+                </div>
+                <!--<div class="btn-div-follow">-->
+                <!--<button class="btn-follow">关注</button>-->
+                <!--</div>-->
+            </div>
+
+            <div class="data-info">
+                <dl class="text-center" title="4">
+                    <dt>文章</dt>
+                    <dd>
+                        <span class="count">4</span>
+                    </dd>
+                </dl>
+                <dl class="text-center" title="0">
+                    <dt>粉丝</dt>
+                    <dd>
+                        <span class="count">0</span>
+                    </dd>
+                </dl>
+                <dl class="text-center" title="0">
+                    <dt>关注</dt>
+                    <dd>
+                        <span class="count">0</span>
+                    </dd>
+                </dl>
+                <dl class="text-center" title="0">
+                    <dt>评论</dt>
+                    <dd>
+                        <span class="count">0</span>
+                    </dd>
+                </dl>
+            </div>
+
+            <div class="grade-box">
+                访问：4396
+            </div>
+
+        </div>
+
+        <div id="asideCategory" class="aside-box">
+            <h3 class="aside-title">个人分类</h3>
+            <div class="aside-content">
+                <ul id="cateUl">
+                    <!--<li>-->
+                    <!--<a href="#">nlp<span class="count">2篇</span></a>-->
+
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<a href="#">deep learning<span class="count">3篇</span></a>-->
+
+                    <!--</li>-->
+                </ul>
+            </div>
+        </div>
+
+        <div id="asideArchive" class="aside-box">
+            <h3 class="aside-title">归档</h3>
+            <div class="aside-content">
+                <ul class="achieve-list" id="dateSortNum">
+                    <!--<li><a href="#">2018年5月<span class="count">4篇</span></a></li>-->
+                    <!--<li><a href="#">2018年4月<span class="count">1篇</span></a></li>-->
+                </ul>
+            </div>
+        </div>
+        <div id="asideHotArticle" class="aside-box">
+            <h3 class="aside-title">热门文章</h3>
+            <div class="aside-content">
+                <ul class="hotArticle-list" id="hotArticleUl">
+                    <!--<li>-->
+                    <!--<a href="#">Title1</a>-->
+                    <!--<p class="read">阅读量：233</p>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<a href="#">Title2</a>-->
+                    <!--<p class="read">阅读量：233</p>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<a href="#">Title0</a>-->
+                    <!--<p class="read">阅读量：233</p>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+        </div>
+
+    </aside>
+    <main>
+        <div class="filter-box">
+            <h3>分类文章</h3>
+        </div>
+        <div class="article-list">
+            <!--<div class="article-item-box">-->
+            <!--<h4><a href="article.html" target="_blank">Title0</a></h4>-->
+            <!--<p class="content">-->
+            <!--<a href="#" target="_blank">abstract...</a>-->
+            <!--</p>-->
+            <!--<div class="info-box">-->
+            <!--<p>-->
+            <!--<span class="date">2018-5-18 15:31:00</span>-->
+            <!--</p>-->
+            <!--<p>-->
+            <!--<span class="read-num">阅读数：233</span>-->
+            <!--</p>-->
+            <!--<p>-->
+            <!--<span class="read-num">评论数：233</span>-->
+            <!--</p>-->
+            <!--</div>-->
+            <!--<div class="opt-box">-->
+            <!--<button class="btn-opt" data-type="top">置顶</button>-->
+            <!--<a class="btn-opt" data-type="edit" href="#" target="_blank">编辑</a>-->
+            <!--<button class="btn-opt" data-type="delete">删除</button>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class='article-item-box'>-->
+            <!--<h4><a href='javascript:' target='_blank' class='detail'>Title3</a></h4>-->
+            <!--<p class='content'>-->
+            <!--<a href='javascript:' target='_blank' class='detail'>abstract...</a>-->
+            <!--</p>-->
+            <!--<div class='info-box'>-->
+            <!--<p>-->
+            <!--<span class='date'>2018-5-18 15:31:00</span>-->
+            <!--</p>-->
+            <!--<p>-->
+            <!--<span class='read-num'>阅读数：233</span>-->
+            <!--</p>-->
+            <!--<p>-->
+            <!--<span class='read-num'>评论数：233</span>-->
+            <!--</p>-->
+            <!--</div>-->
+            <!--<div class='opt-box'>-->
+            <!--<button class='btn-opt' data-type='top'>置顶</button>-->
+            <!--<a class='btn-opt' data-type='edit' href='javascript:' target='_blank'>编辑</a>-->
+            <!--<button class='btn-opt delete' data-type='delete'>删除</button>-->
+            <!--</div>-->
+            <!--</div>-->
+        </div>
+    </main>
+
+</div>
+
+<footer>
+    ©myblog 2018
+</footer>
+<div class="backTop" onclick="">
+    <i class="fa fa-arrow-up fa-3x" aria-hidden="true" ></i>
+</div>
+<script src="js/jquery-form.js"></script>
+<script src="js/set_aside.js"></script>
+<script src="js/set_nav_banner.js"></script>
+
+<script>
+    function getUrlParam(name){
+        //正则表达式过滤
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        //正则规则
+        // console.log("reg==="+reg);
+        //search：返回URL的查询部分
+        // console.log("location.search==="+location.search);
+        //substr（1）：从字符串第一个位置中提取一些字符
+        // console.log("location.search.substr(1)==="+location.search.substr(1));
+        //match（）：在字符串内检索与正则表达式匹配的指定值，返回一个数组给r
+        // console.log("window.location.search.substr(1).match(reg)==="+window.location.search.substr(1).match(reg));
+        var r = window.location.search.substr(1).match(reg);
+        //获取r数组中下标为2的值；（下标从0开始），用decodeURI（）进行解码
+        // console.log("decodeURI(r[2])==="+decodeURI(r[2]));
+        // console.log("-----------------分隔符------------------------");
+        if (r != null) return decodeURI(r[2]); return null;
+
+    }
+
+    jQuery(document).ready(function () {
+        var username = getUrlParam('username');
+        var date = getUrlParam('date');
+        // title 和 banner
+        // title
+        $("title").html(username + "的博客  -myblog");
+        // banner
+        var blogTitle = document.getElementsByClassName('title-box')[0];
+        blogTitle.innerHTML = "<h6 class=\"title-blog\">" + username + "的博客</h6>";
+
+        $(document).on('click', '.banner', function () {
+            window.location.href = "index.html?username=" + username;
+        });
+
+        // date
+        $('.filter-box').children().html(date);
+
+
+        $.ajax({
+            type: 'post',
+            url: 'php/time_article.php',
+            data: {
+                username: username,
+                month: date
+            },
+            dataType: 'json',
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert('连接错误：' + textStatus + errorThrown);
+            },
+            success: function (data) {
+                console.log(data);
+                var length = 0;
+                for (i in data){
+                    length ++;
+                }
+                console.log(length);
+                // 加载文章
+                if (data['now_session'] === username) {
+                    for (var i = 0; i < length - 1; i++) {
+                        $('.article-list').append("<div class='article-item-box' article_id='" + data[i]['article_id'] + "'><h4><a href='article.html?username=" + username + "&article_id=" + data[i]['article_id'] + "' target='_blank' class='detail'>" + data[i]['title'] + "</a></h4>" +
+                            "<p class='content'>" +
+                            "<a href='article.html?username=" + username + "&article_id=" + data[i]['article_id'] + "' target='_blank' class='detail'>" + data[i]['abstract'] + "</a></p>" +
+                            "<div class='info-box'>" +
+                            "<p><span class='date'>" + data[i]['create_time'] + "</span></p>" +
+                            "<p><span class='read-num'>阅读数：" + data[i]['read_num'] + "</span></p>" +
+                            "<p><span class='read-num'>评论数：" + data[i]['comment_num'] + "</span></p></div>" +
+                            "<div class='opt-box'>" +
+                            "<button class='btn-opt' data-type='top'>置顶</button>" +
+                            "<a class='btn-opt' data-type='edit' href='edit_article.html?username=" + username + "&article_id=" + data[i]['article_id'] + "'>编辑</a>" +
+                            "<button class='btn-opt delete' data-type='delete'>删除</button></div></div>");
+                    }
+                }
+                else {
+                    for (var i = 0; i < length - 1; i++) {
+                        $('.article-list').append("<div class='article-item-box'><h4><a href='article.html?username=" + username + "&article_id=" + data[i]['article_id'] + "' target='_blank' class='detail'>" + data[i]['title'] + "</a></h4>" +
+                            "<p class='content'>" +
+                            "<a href='article.html?username=" + username + "&article_id=" + data[i]['article_id'] + "' target='_blank' class='detail'>" + data[i]['abstract'] + "</a></p>" +
+                            "<div class='info-box'>" +
+                            "<p><span class='date'>" + data[i]['create_time'] + "</span></p>" +
+                            "<p><span class='read-num'>阅读数：" + data[i]['read_num'] + "</span></p>" +
+                            "<p><span class='read-num'>评论数：" + data[i]['comment_num'] + "</span></p></div>" +
+                            "</div>");
+                    }
+                }
+
+                // 加载页面阅读量增加
+                $.ajax({
+                    type: 'post',
+                    url: 'php/visited_num.php',
+                    data: {
+                        do: 'page_visit',
+                        username: username
+                    },
+                    dataType: 'json',
+                    error : function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert('连接错误：' + textStatus + errorThrown);
+                    },
+                    success: function (data) {
+                        if (data.code === 1) {
+                            console.log('visited_num + 1');
+                        }
+                    }
+                });
+
+                // 删除文章
+                $(document).on('click','.delete',function () { //根据文章id删除文章
+                    //下面3条语句追溯点击事件的父父元素，获取文章id
+                    var par = $(this).parent();
+                    var gra = par.parent('div');
+                    var article_id= gra.attr('article_id');
+                    $.ajax({  //向后台发送删除请求
+                        type:"POST",
+                        url:"php/get_main.php",
+                        data:{
+                            "do": "delete_article",
+                            "article_id": article_id,
+                            "username": username
+                        },
+                        dataType:'json',
+                        error : function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert('连接错误：' + textStatus + errorThrown);
+                        },
+                        success:function (data) {
+                            if(data.code === 1){
+                                gra.hide(); //隐藏被删除的行
+                                alert("删除成功");
+
+                            }
+                        }
+                    })
+
+                });
+            }
+        })
+    })
+</script>
+
+<script>
+    // 回到顶部
+    $(function () {
+        var back=$(".backTop");
+        var win=$(window);
+        var sc=$(document);
+        win.scroll(function () {
+            if(sc.scrollTop()>=190){
+                $(".backTop").fadeIn();
+            }else{
+                $(".backTop").fadeOut();
+            }
+        })
+        back.click(function () {
+            $('body, html').animate({scrollTop:0}, 500);
+        })
+    });
+</script>
+</body>
+</html>

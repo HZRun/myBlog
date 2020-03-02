@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>write_blog</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/write_blog.css">
+    <link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <script type="text/JavaScript" src="js/jquery3-3-1.js"></script>
+    <script charset="utf-8" src="kindeditor/kindeditor-all.js"></script>
+    <script charset="utf-8" src="kindeditor/lang/zh-CN.js"></script>
+    <script>
+        KindEditor.ready(function(K) {
+            K.create('textarea[name="content"]',{
+                themeType:'simple',
+                resizeType:1,
+                uploadJson:'kindeditor/php/upload_json.php',
+                fileManagerJson:'kindeditor/php/file_manager_json.php',
+                allowFileManager:true,
+                //经测试，下面这行代码可有可无，不影响获取textarea的值
+                //afterCreate: function(){this.sync();}
+                //下面这行代码就是关键的所在，当失去焦点时执行 this.sync();
+                afterBlur:function(){this.sync();}
+            });
+        });
+    </script>
+
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="pull-left">
+                <ul>
+                    <li class="logo"><a href="#">MyBlog</a></li>
+                </ul>
+            </div>
+            <div class="pull-right">
+                <ul>
+                    <li>
+                        <div class="search-bar">
+                            <input type="text" style="float: left" class="input-search" placeholder="搜博主/文章">
+                            <a href="#" style="float: right" class="btn-search"><i id="search_button" class="fa fa-search" aria-hidden="true"></i></a>
+                        </div>
+                    </li>
+                    <li class="login-center">
+                        <a href="#" id="navAvatar">
+                            <!--<img src="img/login.png">-->
+                        </a>
+                        <div class="user-control">
+                            <!--<div>-->
+                            <!--<a href="#" target="_blank">我的博客</a>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                            <!--<a href="#" target="_blank">关注/粉丝</a>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                            <!--<a href="#" target="_blank">修改资料</a>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                            <!--<a href="#" target="_blank">退出</a>-->
+                            <!--</div>-->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="title-div">
+                <input type="text" id="txtTitle" maxlength="100" placeholder="请输入文章标题">
+            </div>
+            <div class="section">
+                <textarea id="editor_id" name="content" style="width: 100%; height: 500px"></textarea>
+            </div>
+            <div id="moreDiv">
+                <div class="form-group">
+                    <label class="label-title">个人分类：</label>
+                    <div class="txt-box">
+                        <div class="tag-box" id="categorieBox" style="overflow: hidden">
+                            <input name="hidTags" id="hidCategorie" style="display: none">
+                            <button class="cancel-add-tag" id="cancelAddTag" style="display: none"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <button class="btn-add-tag" id="addCategorie"><i class="fa fa-plus-square" aria-hidden="true"></i>  添加新分类</button>
+                        </div>
+                        <div class="your-list">
+<!--                            <div class='form-check'>
+                                <input type='checkbox' class='add-check' value='type[]'>
+                                <span class='your-cate'>nlp</span>
+                            </div>-->
+                        </div>
+                        <div class="btn-div">
+                            <button class="pub">发布博客</button>
+                            <button class="back">返回</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        (function ($) {
+            $.getUrlParam = function (name) {
+
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+
+                var r = window.location.search.substr(1).match(reg);
+
+                if (r != null) return unescape(r[2]); return null;
+            }
+
+        })(jQuery);
+        var username = $.getUrlParam('username');
+
+        $(function(){
+            //propertychange监听input里面的字符变化,属性改变事件
+            $('#hidCategorie').bind('input propertychange', function() {
+                var $this = $(this);
+                console.log($this);
+                var text_length = $this.val().length;//获取当前文本框的长度
+                var current_width = parseInt(text_length) *16;//该16是改变前的宽度除以当前字符串的长度,算出每个字符的长度
+                console.log(current_width);
+                $this.css("width",current_width+"px");
+            });
+        });
+
+        $(document).on('click', '#addCategorie', function () {
+            $("#hidCategorie").css("display", "block");
+            $("#hidCategorie").focus();
+            $("#cancelAddTag").css("display", "block");
+        });
+
+        $(document).on('click', '#cancelAddTag', function () {
+            $("#hidCategorie").val("");
+
+            $("#hidCategorie").css("display", "none");
+            $("#cancelAddTag").css("display", "none");
+        });
+
+
+        var addCategorie = document.getElementById('addCategorie');
+        var categorieBox = document.querySelector('#categorieBox');
+        var hidCategorie = document.querySelector('#hidCategorie');
+        var Categorie_index = 0;
+        //console.log(addCategorie);
+        addCategorie.addEventListener('click',function () {
+            var inserted_div = document.createElement('div'),
+                inserted_text = hidCategorie.value;
+
+            if(inserted_text != ""){
+
+                //内容标签
+                inserted_div.innerHTML = inserted_text;
+                inserted_div.className = 'inserted-cate';
+                inserted_div.style.color = '#6b6b6b';
+                inserted_div.style.fontSize = '13px';
+                inserted_div.setAttribute('data-index', Categorie_index);
+                categorieBox.insertBefore(inserted_div,hidCategorie);
+
+                //button设置
+                var cancelButton = document.createElement('button');
+                cancelButton.setAttribute('data-index', Categorie_index);
+                cancelButton.addEventListener('click',deleteCate);
+                cancelButton.innerHTML = "<i class=\"fa fa-times\" aria-hidden=\"true\"></i>";
+                cancelButton.className = 'cancel-add-tag1';
+                inserted_div.appendChild(cancelButton);
+
+                Categorie_index++;
+                hidCategorie.value = "";
+            }
+
+        });
+
+        function deleteCate() {
+            var index = this.getAttribute('data-index');
+            var divTags = categorieBox.getElementsByTagName('div');
+            var deleteEle = divTags[index];
+            categorieBox.removeChild(deleteEle);
+
+        }
+
+        jQuery(document).ready(function() {  //向后台请求数据已有个人分类信息
+
+            $.ajax({  //向后台请求基本信息
+                type:"POST",
+                url:"php/get_main.php",
+                data:{
+                    "do":"get_list",
+                },
+                dataType:'json',
+                error : function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert('连接错误：' + textStatus + errorThrown);
+                },
+                success:function (data) {
+                    if(data.code==1){
+                        // console.log(data);
+                        for(i in data.tag){
+                            //alert(data.tag[i][0]);
+                            var new_div = document.createElement('div');   //create 一个div
+                            new_div.innerHTML = "<div class='form-check'><input type='checkbox' name='type' class='add-check' value='"+data.tag[i][0]+"'>"+
+                                "<span class='your-cate'>"+data.tag[i][0]+
+                              " </span></div>";
+                            var parent = document.getElementsByClassName('your-list')[0];  //parent是名为article-list的第一个类，即我们div所要附加的父元素
+                            parent.appendChild(new_div);  //给parent附加上div
+                        }
+                    }
+                }
+            });
+
+            $(document).on('click','.pub',function () {
+                var type_val=[];
+                var new_value = document.getElementsByClassName("inserted-cate");
+                var len = document.getElementsByClassName("inserted-cate").length;//获取插入的新分类长度
+                //alert(len);
+                for(var p=0;p<len;p++){  //将分类循环写入type_val中
+                    type_val.push(new_value[p].innerText); //innerText或者元素内部文本，过滤了<botton>标签及里面的东西
+                    //alert(new_value[p].innerText);
+                }
+                //console.log(document.getElementsByClassName("inserted-cate"))
+               // var child =new_value;
+
+                //console.log(new_value);
+                var ch_value = document.getElementsByName("type");   //拿到名字为‘type’的元素
+                for(k in ch_value){  //判断是否选中
+                    if(ch_value[k].checked)
+                        type_val.push((ch_value[k].value));   //将选中的分类push进type_val中
+                }
+                //console.log(type_val);
+                var content = $("#editor_id").val();     //获取文本框的内容
+                //console.log(content);
+                //alert(content);
+                var abstract1 = content.substr(0,50);    //截取前50字符作为摘要
+                //alert(abstract1);
+                // var tip = /<[^>]+>/g;      //匹配所有的“<>”
+                //var img=/<img\b[^>]*>/;
+                var abstract2= abstract1.replace(/<(?:.|\s)*?>/g, "");
+                var text = $("#editor_id").text;
+                console.log(text);
+                var abstract = Trim(abstract2);
+                console.log(abstract);
+                var title = $("#txtTitle").val();
+                if (title === "" || content === ""){
+                    alert("标题或内容不能为空！");
+                }
+                else {
+                    $.ajax({
+                        type: "post",
+                        url: "php/post_article.php",
+                        data: {
+                            title:title,
+                            content:content,
+                            abstract:abstract,
+                            tag:type_val
+                        },
+                        dataType:'json',
+                        /*            contentType: false,
+                                    processData: false,*/
+                        success: function (){
+                            alert("发表成功！");
+                            //alert(data.msg);
+                            window.location.href = 'index.html?username=' + username;
+                        },
+                        error : function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert('连接错误：' + textStatus + errorThrown);
+                        }
+                    })
+                }
+
+
+            })
+        });
+
+        function Trim(str,is_global)
+        {
+            var result;
+            result = str.replace(/(^\s+)|(\s+$)/g,"");
+            /*        if(is_global.toLowerCase()=="g")
+                    {
+                        result = result.replace(/\s/g,"");
+                    }*/
+            return result;
+        }
+
+        // 返回
+        $(document).on('click', '.back', function () {
+            history.back(-1);
+        })
+    </script>
+
+    <script src="js/set_nav_banner.js"></script>
+</body>
+</html>

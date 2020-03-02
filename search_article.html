@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>search_article</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/search.css">
+    <link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <script type="text/JavaScript" src="js/jquery3-3-1.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="pull-left">
+                <ul>
+                    <li class="logo"><a href="#">MyBlog</a></li>
+                </ul>
+            </div>
+            <div class="pull-right">
+                <ul>
+                    <li>
+                        <div class="search-bar">
+                            <input type="text" style="float: left" class="input-search" placeholder="搜博主/文章">
+                            <a href="#" style="float: right" class="btn-search"><i id="search_button" class="fa fa-search" aria-hidden="true"></i></a>
+                        </div>
+                    </li>
+                    <li class="login-center">
+                        <a href="#" id="navAvatar">
+                            <!--<img src="img/login.png">-->
+                        </a>
+                        <div class="user-control">
+                            <!--<div>-->
+                            <!--<a href="#" target="_blank">我的博客</a>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                            <!--<a href="#" target="_blank">关注/粉丝</a>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                            <!--<a href="#" target="_blank">修改资料</a>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                            <!--<a href="#" target="_blank">退出</a>-->
+                            <!--</div>-->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <ul class="search-type">
+                <li><a href="#">找人</a></li>
+                <li><a href="#" class="search-active">文章</a></li>
+            </ul>
+
+            <div class="search-form">
+                <form id="searchForm">
+                    <div class="search-text">
+                        <input type="text" placeholder="请输入搜索内容" maxlength="100" id="searchContent">
+                    </div>
+                    <div class="search-btn">
+                        <button id="searchBtn">搜索</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="search-list-content">
+                <!--<div class="article-item-box">-->
+                    <!--<h4><a href="article.html" target="_blank">Title0</a></h4>-->
+                    <!--<p class="content">-->
+                        <!--<a href="#" target="_blank">abstract...</a>-->
+                    <!--</p>-->
+                    <!--<div class="info-box">-->
+                        <!--<p>-->
+                            <!--<span class="author">作者：<a href="#">Elenore</a></span>-->
+                        <!--</p>-->
+                        <!--<p>-->
+                            <!--<span class="date">2018-5-18 15:31:00</span>-->
+                        <!--</p>-->
+                        <!--<p>-->
+                            <!--<span class="read-num">阅读数：233</span>-->
+                        <!--</p>-->
+                        <!--<p>-->
+                            <!--<span class="read-num">评论数：233</span>-->
+                        <!--</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="article-item-box">-->
+                    <!--<h4><a href="article.html" target="_blank">Title0</a></h4>-->
+                    <!--<p class="content">-->
+                        <!--<a href="#" target="_blank">abstract...</a>-->
+                    <!--</p>-->
+                    <!--<div class="info-box">-->
+                        <!--<p>-->
+                            <!--<span class="author">作者：<a href="#">Elenore</a></span>-->
+                        <!--</p>-->
+                        <!--<p>-->
+                            <!--<span class="date">2018-5-18 15:31:00</span>-->
+                        <!--</p>-->
+                        <!--<p>-->
+                            <!--<span class="read-num">阅读数：233</span>-->
+                        <!--</p>-->
+                        <!--<p>-->
+                            <!--<span class="read-num">评论数：233</span>-->
+                        <!--</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="article-item-box">-->
+                    <!--<h4><a href="article.html" target="_blank">Title0</a></h4>-->
+                    <!--<p class="content">-->
+                        <!--<a href="#" target="_blank">abstract...</a>-->
+                    <!--</p>-->
+                    <!--<div class="info-box">-->
+                        <!--<p>-->
+                            <!--<span class="author">作者：<a href="#">Elenore</a></span>-->
+                        <!--</p>-->
+                        <!--<p>-->
+                            <!--<span class="date">2018-5-18 15:31:00</span>-->
+                        <!--</p>-->
+                        <!--<p>-->
+                            <!--<span class="read-num">阅读数：233</span>-->
+                        <!--</p>-->
+                        <!--<p>-->
+                            <!--<span class="read-num">评论数：233</span>-->
+                        <!--</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </main>
+
+    <script src="js/set_nav_banner.js"></script>
+    <script>
+        function getUrlParam(name){
+            //正则表达式过滤
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            //正则规则
+            // console.log("reg==="+reg);
+            //search：返回URL的查询部分
+            // console.log("location.search==="+location.search);
+            //substr（1）：从字符串第一个位置中提取一些字符
+            // console.log("location.search.substr(1)==="+location.search.substr(1));
+            // match（）：在字符串内检索与正则表达式匹配的指定值，返回一个数组给r
+            // console.log("window.location.search.substr(1).match(reg)==="+window.location.search.substr(1).match(reg));
+            var r = window.location.search.substr(1).match(reg);
+            //获取r数组中下标为2的值；（下标从0开始），用decodeURI（）进行解码
+            // console.log("decodeURI(r[2])==="+decodeURI(r[2]));
+            // console.log("-----------------分隔符------------------------");
+            if (r != null) return decodeURI(r[2]); return null;
+
+        }
+        var key = getUrlParam('key');
+        var page_num = 1;
+        jQuery(document).ready(function () {
+            // title
+            $("title").html('搜索文章--' + key);
+            // 搜索框内容变成key内容
+            $('#searchContent').val(key);
+
+            $.ajax({
+                type: 'post',
+                url: 'php/search.php',
+                data: {
+                    do: 'search_article',
+                    key: key,
+                    page_num: page_num
+                },
+                dataType: 'json',
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert('连接错误：' + textStatus + errorThrown);
+                },   //如果请求出错，弹出错误提示
+                success: function (data) {
+                    console.log(data);
+                    // console.log(data.info['amount']);
+                    for (var i = 0; i < data.info['amount']; i++) {
+                        $('.search-list-content').append("<div class='article-item-box'>" +
+                            "<h4>" +
+                            "<a href='article.html?username=" + data.res[i]['username']+ "&article_id=" + data.res[i]['article_id'] + "' target='_blank'>" + data.res[i]['title'] +"</a></h4>" +
+                            "<p class='content'>" +
+                            "<a href='article.html?username=" + data.res[i]['username']+ "&article_id=" + data.res[i]['article_id'] + "' target='_blank'>" + data.res[i]['abstract'] + "</a></p>" +
+                            "<div class='info-box'><p><span class='author'>作者：<a href='index.html?username=" + data.res[i]['username'] + "'>" + data.res[i]['username'] + "</a></span></p>" +
+                            "<p><span class='date'>" + data.res[i]['create_time'] + "</span></p>" +
+                            "<p><span class='read-num'>阅读数：" + data.res[i]['read_num'] + "</span></p>" +
+                            "<p><span class='read-num'>评论数：" + data.res[i]['comment_num'] + "</span></p></div></div>");
+                    }
+                }
+            });
+
+            // 在这个页面内搜索
+            $(document).on('click', '#searchBtn', function () {
+                var key = $('#searchContent').val();
+                // alert(key);
+                var url = 'search_article.html?key=' + key;
+                window.open(url);
+            });
+
+            // 点击找人
+            var findUserUrl = $('.search-type').children().children();
+            // alert($('#searchContent').val());
+            findUserUrl.attr('href', 'search_user.html?key=' + $('#searchContent').val());
+        })
+
+    </script>
+
+</body>
+</html>

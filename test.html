@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script charset="utf-8" src="kindeditor/kindeditor-all.js"></script>
+<script charset="utf-8" src="kindeditor/lang/zh-CN.js"></script>
+<script type="text/javascript" src="js/http_code.jquery.com_jquery-2.0.0.js"></script>
+<script>
+    KindEditor.ready(function(K) {
+        K.create('textarea[name="content"]',{
+            themeType:'simple',
+            resizeType:1,
+            uploadJson:'kindeditor/php/upload_json.php',
+            fileManagerJson:'kindeditor/php/file_manager_json.php',
+            allowFileManager:true,
+//经测试，下面这行代码可有可无，不影响获取textarea的值
+//afterCreate: function(){this.sync();}
+//下面这行代码就是关键的所在，当失去焦点时执行 this.sync();
+            afterBlur:function(){this.sync();}
+        });
+    });
+    // 取得HTML内容
+    //    html = editor.html();
+
+
+    //html = document.getElementById('editor_id').value; // 原生API
+    //html = $('#editor_id').val(); // jQuery
+    //alert(html);
+
+    // 设置HTML内容
+    //editor.html('HTML内容');
+</script>
+<input type="text" id="title" placeholder="请输入文章标题" />
+<textarea id="editor_id" name="content" style="width:700px;height:300px;">
+    <p>helo</p>
+</textarea>
+<button type="submit" class="post">发表文章</button>
+<button type="reset">重置</button>
+<script>
+    jQuery(document).ready(function() {
+    $(document).on('click','.post',function () {
+        var content = $("#editor_id").val();
+        //console.log(content);
+        //alert(content);
+        var abstract1 = content.substr(0,50);
+        //alert(abstract1);
+        var tip = /<[^>]+>/g;
+        //var img=/<img\b[^>]*>/;
+        var abstract2= content.replace(tip,'');
+        var text = $("#editor_id").text;
+        console.log(text);
+        var abstract = Trim(abstract2);
+        console.log(abstract);
+        var title = $("#title").val();
+        $.ajax({
+            type: "post",
+            url: "../php/post_article.php",
+            data: {
+                title:title,
+                content:content,
+                abstract:abstract,
+            },
+            dataType:'json',
+/*            contentType: false,
+            processData: false,*/
+            success: function (){
+                alert("hello");
+                //alert(data.msg);
+            },
+            error : function (XMLHttpRequest, textStatus, errorThrown) {
+                alert('连接错误：' + textStatus + errorThrown);
+            },
+        })
+    })
+    });
+
+    function Trim(str,is_global)
+    {
+        var result;
+        result = str.replace(/(^\s+)|(\s+$)/g,"");
+/*        if(is_global.toLowerCase()=="g")
+        {
+            result = result.replace(/\s/g,"");
+        }*/
+        return result;
+    }
+</script>
+</body>
+</html>

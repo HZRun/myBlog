@@ -1,0 +1,220 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+/*reset*/
+#section0, #section1, #section2, #section3{
+    background-color: #000;
+    background-size: cover;
+    background-position: 50% 50%;
+    /*text-align: center;*/
+    color: white;
+    position: relative;
+}
+/*全屏要素：*/
+/*全屏的元素及其父元素都要设置height：100%*/
+/*将html、body标签设置height：100%*/
+/*（height：100%是跟随其父元素高度变化而变化的）*/
+html, body{
+    height: 100%;
+    overflow: hidden;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: white;
+    z-index: 9999;
+    height: 50px;
+}
+
+.container, .sections, .section{
+    height: 100%;
+}
+
+.container{
+    overflow: hidden;/*不能滚动，因为我们要用js进行滚动*/
+}
+
+.sections{
+    transition: all ease 1s;
+    cursor: pointer;
+}
+
+#section0{
+    background-image: url("../img/Tokyo.jpg");
+    opacity: 0.9;
+    position: relative;
+}
+
+#section1{
+    background-image: url("../img/Tokyo2.jpg");
+    opacity: 0.9;
+
+}
+
+#section2{
+    background-image: url("../img/Tokyo3.jpg");
+    opacity: 0.9;
+
+}
+
+#section3{
+    background-image: url("../img/Tokyo1.jpg");
+    opacity: 0.9;
+
+}
+
+nav{
+    background: #FFFFFF;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    /*position: fixed;*/
+    /*overflow: hidden;*/
+    z-index: 999;
+}
+
+header{
+    background: #FFFFFF;
+}
+
+nav ul{
+    list-style: none;
+    margin: 0;
+    /*float: right;*/
+}
+
+nav ul li{
+    display: inline-block;
+    line-height: 50px;
+    margin-left: 20px;
+}
+
+.logo{
+    margin-left: 0;
+}
+
+.logo a{
+    text-decoration: none;
+    color: #3f3f3f;
+}
+
+nav ul li a{
+    line-height: inherit;
+    text-decoration: none;
+    display: inline-block;
+    height: inherit;
+    color: #3f3f3f;
+}
+
+nav ul li a:hover{
+    color: #ca0c16;
+}
+
+nav li{
+    /*float: left;*/
+    position: relative;
+}
+
+.pull-left{
+    float: left;
+}
+
+.search-bar .input-search{
+    background-color: #fafafa;
+    font-size: 14px;
+    color: #778087;
+    display: block;
+    float: right;
+    /*clear: both;*/
+    width: 105px;
+    padding: 5px 10px;
+    border: 0;
+    height: 20px;
+    border-radius: 10px;
+}
+
+/*#search_button{*/
+/*width: 15px;*/
+/*height: 16px;*/
+/*float: right;*/
+/*}*/
+
+.pull-right{
+    float: right !important;
+}
+
+.banner{
+    background: url("../img/banner.jpg") no-repeat center;
+    height: 140px;
+    background-size: 1920px auto;
+}
+
+.banner .title-box{
+    overflow: hidden;
+    max-width: 720px;
+    padding: 0 24px 0;
+    margin: 0 auto;
+}
+
+h6{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.write_blog{
+    width: 67px;
+    height: 50px;
+    float: right;
+}
+.search-bar{
+    width: 145px;
+    height: 50px;
+    float: right;
+    position: relative;
+}
+.input-search{
+    width: 130px;
+    height: 30px;
+    float: left;
+    top: 20%;
+    position: absolute;
+}
+.btn-search{
+    width: 15px;
+    height: 50px;
+    float: right;
+}
+
+.user-control{
+    position: absolute;
+    background: #FFFFFF;
+    z-index: 99999;
+    padding-top: 9px;
+    padding-bottom: 12px;
+    top: 40px;
+    right: 1px;
+    width: 130px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.1);
+    border-radius: 0 0 4px 4px;
+    display: none;
+}
+
+.user-control div a{
+    line-height: 2;
+    text-align: left;
+    height: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
+    color: #4f4f4f;
+    font-size: 14px;
+}
+
+.login-center:hover .user-control{
+    display: block;
+}
+
+
+

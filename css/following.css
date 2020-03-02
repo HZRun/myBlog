@@ -1,0 +1,492 @@
+body{
+    background: #f5f6f7;
+}
+
+nav{
+    background: #FFFFFF;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    /*position: fixed;*/
+}
+
+header{
+    background: #FFFFFF;
+}
+
+nav ul{
+    list-style: none;
+    margin: 0;
+    /*float: right;*/
+}
+
+nav ul li{
+    display: inline-block;
+    line-height: 50px;
+    margin-left: 20px;
+}
+
+.logo{
+    margin-left: 0;
+}
+
+.logo a{
+    text-decoration: none;
+    color: #3f3f3f;
+}
+
+nav ul li a{
+    line-height: inherit;
+    text-decoration: none;
+    display: inline-block;
+    height: inherit;
+    color: #3f3f3f;
+}
+
+nav ul li a:hover{
+    color: #ca0c16;
+}
+
+nav li{
+    /*float: left;*/
+    position: relative;
+}
+
+.pull-left{
+    float: left;
+}
+
+.search-bar .input-search{
+    background-color: #fafafa;
+    font-size: 14px;
+    color: #778087;
+    display: block;
+    float: right;
+    /*clear: both;*/
+    width: 105px;
+    padding: 5px 10px;
+    border: 0;
+    height: 20px;
+    border-radius: 10px;
+}
+
+/*#search_button{*/
+/*width: 15px;*/
+/*height: 16px;*/
+/*float: right;*/
+/*}*/
+
+.pull-right{
+    float: right !important;
+}
+
+.banner{
+    background: url("../img/banner.jpg") no-repeat center;
+    height: 140px;
+    background-size: 1920px auto;
+}
+
+.banner .title-box{
+    overflow: hidden;
+    max-width: 720px;
+    padding: 0 24px 0;
+    margin: 0 auto;
+}
+
+h6{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.write_blog{
+    width: 67px;
+    height: 50px;
+    float: right;
+}
+.search-bar{
+    width: 145px;
+    height: 50px;
+    float: right;
+    position: relative;
+}
+.input-search{
+    width: 130px;
+    height: 30px;
+    float: left;
+    top: 20%;
+    position: absolute;
+}
+.btn-search{
+    width: 15px;
+    height: 50px;
+    float: right;
+}
+
+.user-control{
+    position: absolute;
+    background: #FFFFFF;
+    z-index: 99999;
+    padding-top: 9px;
+    padding-bottom: 12px;
+    top: 40px;
+    right: 1px;
+    width: 130px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.1);
+    border-radius: 0 0 4px 4px;
+    display: none;
+}
+
+.user-control div a{
+    line-height: 2;
+    text-align: left;
+    height: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
+    color: #4f4f4f;
+    font-size: 14px;
+}
+
+.login-center:hover .user-control{
+    display: block;
+}
+
+.container{
+    width: 1216px;
+    /*padding: 24px 24px 0;*/
+    padding: 1px 0 0 0;
+    margin: 0 auto;
+    box-sizing: content-box;
+}
+
+/*子div浮动之后，父div无法撑开的解决方法*/
+.container:after{
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+main{
+    width: 900px;
+    float: left;
+}
+
+.filter-box{
+    margin-top: 1px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}
+
+.filter-box h3{
+    padding: 16px 16px;
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+}
+
+
+.filter-box h3::before{
+    display: inline-block;
+    margin-right: 8px;
+    content: '';
+    width: 4px;
+    height: 22px;
+    vertical-align: -6px;
+    background-color: #ca0c16;
+}
+
+aside{
+    width: 300px;
+    margin-left: 15px;
+    margin-top: 1px;
+    float: right;
+}
+
+aside div.aside-box{
+    margin-bottom: 8px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+    width: 100%;
+}
+
+aside div.aside-box h3.aside-title {
+    padding: 16px 16px 0;
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+}
+
+aside #asideProfile .profile-intro {
+    padding: 16px 16px;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+aside #asideProfile .profile-intro:after{
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+aside #asideProfile .profile-intro .avatar-box{
+    float: left;
+    width: 48px;
+    height: 48px;
+}
+
+aside #asideProfile .profile-intro .avatar-box a{
+    width: 48px;
+    height: 48px;
+}
+
+aside #asideProfile .profile-intro .user-info {
+    margin-left: 8px;
+    width: 138px;
+    float: left;
+}
+
+aside #asideProfile .profile-intro .user-info p.name a {
+    display: inline-block;
+    color: #3d3d3d;
+    font-weight: 700;
+    max-width: 100px;
+}
+
+aside #asideProfile .data-info {
+    padding: 16px 10px;
+    border-bottom: 1px solid #e3e3e3;
+    /*width: 100%;*/
+    overflow: hidden;
+}
+
+.text-center{
+    text-align: center;
+    width: 25%;
+    float: left;
+    margin: 0;
+    font-size: 14px;
+}
+
+.text-center dd {
+    display: block;
+    margin-left: 0px;
+    margin-top: 5px;
+}
+
+aside #asideProfile .grade-box {
+    padding: 16px;
+    font-size: 14px;
+}
+
+aside #asideCategory .aside-content ul, aside #asideArchive .aside-content ul{
+    list-style: none;
+}
+
+aside #asideCategory .aside-content ul li, aside #asideArchive .aside-content ul li{
+    margin-left: -20px;
+    margin-bottom: 8px;
+}
+
+aside #asideCategory .aside-content ul li a, aside #asideArchive .aside-content ul li a, aside #asideHotArticle ul li a{
+    color: #333;
+    font-size: 14px;
+    display: block;
+    margin: 0;
+}
+
+aside #asideCategory .aside-content ul li a span.count, aside #asideArchive .aside-content ul li a span.count{
+    font-size: 12px;
+    color: #858585;
+}
+
+aside #asideCategory .aside-content, aside #asideArchive .aside-content{
+    overflow: hidden;
+}
+
+aside #asideCategory .aside-content ul li a span, aside #asideArchive .aside-content ul li a span{
+    float: right;
+    padding-right: 15px;
+}
+
+aside div.aside-box h3.aside-title::before {
+    display: inline-block;
+    margin-right: 8px;
+    content: '';
+    width: 4px;
+    height: 22px;
+    vertical-align: -6px;
+    background-color: #ca0c16;
+}
+
+aside #asideCategory .aside-content ul li a:hover,
+aside #asideArchive .aside-content ul li a:hover,
+aside #asideHotArticle ul li a:hover{
+    color: #ca0c16;
+}
+
+aside #asideHotArticle ul{
+    list-style: none;
+}
+aside #asideHotArticle ul li{
+    margin-left: -20px;
+    margin-bottom: 8px;
+}
+
+aside #asideHotArticle ul li p{
+    font-size: 12px;
+    color: #858585;
+}
+
+aside div.aside-box div.aside-content{
+    overflow: hidden;
+}
+
+footer{
+    text-align: center;
+    color: #858585;
+    font-size: 14px;
+}
+
+.backTop{
+    bottom: 40px;
+    right: 30px;
+    position: fixed;
+    background: #cbd0d121;
+    padding: 5px;
+    cursor: pointer;
+    display: block;
+}
+
+
+.backTop:hover{
+    background: #858585;
+}
+
+.backTop i{
+    color: #cfcaca;
+}
+
+.filter-box h3 a{
+    text-decoration: none;
+    color: #1d86cf;
+}
+
+a{
+    text-decoration: none;
+}
+
+.filter-box h3 a.active{
+    color: #000000;
+}
+
+.follow-list{
+    margin-top: 1px;
+    margin-bottom: 200px;
+}
+
+.follow-list .follow-item-box{
+    margin-bottom: 1px;
+    padding: 16px 24px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+    /*overflow: hidden;*//*t*/
+    position: relative;
+}
+
+.follow-avatar{
+    display: inline-block;
+}
+
+.follow-info{
+    display: inline-block;
+}
+
+.follow-name{
+    color: #333333;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.follow-time{
+    /*margin-left: 16px;*/
+    font-size: 13px;
+    color: #6b6b6b;
+}
+
+.follow-info-bottom{
+    margin-top: 12px;
+}
+
+.follow-info-right{
+    float: right;
+}
+
+.btn-follow{
+    background-color: #fafafa;
+    cursor: pointer;
+    padding: 5px;
+    width: 56px;
+    height: 28px;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #f21f2b;
+    margin-top: 10px;
+    /* border-color: #f21f2b; */
+    border: 1px solid #f21f2b;
+}
+
+.btn-follow:hover{
+    background-color: rgba(242, 31, 43, 0.1);
+}
+
+.follow-data{
+    font-size: 13px;
+    margin-left: 28px;
+    color: #6b6b6b;
+}
+
+.follow-data-div{
+    padding-bottom: 8px;
+}
+
+.btn-div-follow .btn-follow{
+    display: inline-block;
+    margin-top: 15px;
+    background-color: #fafafa;
+    cursor: pointer;
+    padding: 5px;
+    width: 56px;
+    height: 28px;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #f21f2b;
+    border: 1px solid #f21f2b;
+}
+
+.btn-div-follow .btn-follow:hover{
+    background-color: rgba(242, 31, 43, 0.1);
+}
+
+.btn-follow-aside{
+    display: inline-block;
+    margin-top: 15px;
+    background-color: #fafafa;
+    cursor: pointer;
+    padding: 5px;
+    width: 56px;
+    height: 28px;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #f21f2b;
+    border: 1px solid #f21f2b;
+}
+
+.btn-follow-aside:hover{
+    background-color: rgba(242, 31, 43, 0.1);
+}
+
+.banner:hover{
+    cursor: pointer;
+}
